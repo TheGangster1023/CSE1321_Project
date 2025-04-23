@@ -25,6 +25,9 @@ DARK = (30, 30, 30)
 pygame.mixer.init()
 pygame.mixer.music.load('Intro.mp3')
 pygame.mixer.music.play(-1)
+arrow_whoosh = pygame.mixer.Sound('arrow_whoosh.mp3')
+arrow_collision=pygame.mixer.Sound("arrow_collision.mp3")
+win_sound=pygame.mixer.Sound("win.wav")
 
 # Game state
 class GameState:
@@ -135,6 +138,7 @@ class ArrowRoom:
             arrow = pygame.Rect(random.randint(0, WIDTH - 10), 0, 10, 30)
             self.arrows.append(arrow)
             self.spawn_timer = now
+            arrow_whoosh.play()
 
         for arrow in self.arrows:
             arrow.y += 10
@@ -142,9 +146,12 @@ class ArrowRoom:
         for arrow in self.arrows:
             if arrow.colliderect(self.player.rect):
                 game_state.current_room = "start"  # Restart game
+                arrow_collision.play()
+                self.arrows=[]
 
         if time.time() - game_state.start_time > 30:
             game_state.current_room = "exit"
+            win_sound.play()
 
     def draw(self, screen):
         screen.blit(self.bg, (0, 0))
