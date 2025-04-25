@@ -78,7 +78,7 @@ class StartRoom:
 # Puzzle Room
 class PuzzleRoom:
     def __init__(self):
-        originalBg = pygame.image.load("Puzzle Room Background.tiff")
+        originalBg = pygame.image.load("puzzlebg.jpg")
         self.bg = pygame.transform.scale(originalBg, (WIDTH, HEIGHT))
         self.player = Player(100, 100)
         self.blocks = [
@@ -121,6 +121,8 @@ class PuzzleRoom:
             pygame.draw.rect(screen, BLUE, block)
         for plate in self.plates:
             pygame.draw.rect(screen, YELLOW, plate)
+        if not (0<self.player.rect.x<(WIDTH-32) and (0<self.player.rect.y<(HEIGHT-32))):
+            self.player.rect.topleft=(100,100)
         border_thickness = 10
         border_color = (255, 0, 0)  # Red
 
@@ -132,7 +134,7 @@ class PuzzleRoom:
 # Arrow Room
 class ArrowRoom:
     def __init__(self):
-        originalBg = pygame.image.load("Arrow Background.tiff")
+        originalBg = pygame.image.load("arrowbg.jpg")
         self.bg = pygame.transform.scale(originalBg, (WIDTH, HEIGHT))
         self.player = Player(400, 500)
         self.arrows = []
@@ -159,6 +161,8 @@ class ArrowRoom:
         if time.time() - game_state.start_time > 30:
             game_state.current_room = "exit"
             win_sound.play()
+        if not (0<self.player.rect.x<(WIDTH-32) and (0<self.player.rect.y<(HEIGHT-32))):
+            self.player.rect.topleft=(400,500)
 
     def draw(self, screen):
         screen.blit(self.bg, (0, 0))
