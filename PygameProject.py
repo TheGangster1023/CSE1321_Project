@@ -78,8 +78,10 @@ class StartRoom:
 # Puzzle Room
 class PuzzleRoom:
     def __init__(self):
+        self.border = pygame.image.load("puzzleborder.png")
+        self.border_thickness=10
         originalBg = pygame.image.load("puzzlebg.jpg")
-        self.bg = pygame.transform.scale(originalBg, (WIDTH, HEIGHT))
+        self.bg = pygame.transform.scale(originalBg, (WIDTH-2*self.border_thickness, HEIGHT-2*self.border_thickness))
         self.player = Player(100, 100)
         self.blocks = [
             pygame.Rect(150, 200, 40, 40),
@@ -134,8 +136,10 @@ class PuzzleRoom:
 # Arrow Room
 class ArrowRoom:
     def __init__(self):
+        self.border=pygame.image.load("arrowborder.png")
         originalBg = pygame.image.load("arrowbg.jpg")
-        self.bg = pygame.transform.scale(originalBg, (WIDTH, HEIGHT))
+        self.border_thickness=10
+        self.bg = pygame.transform.scale(originalBg, (WIDTH-2*self.border_thickness, HEIGHT-2*self.border_thickness))
         self.player = Player(400, 500)
         self.arrows = []
         self.spawn_timer = 0
