@@ -23,14 +23,11 @@ DARK = (30, 30, 30)
 
 # Music/Sounds
 pygame.mixer.init()
-pygame.mixer.music.load('Intro.mp3')
+pygame.mixer.music.load('audio/Intro.mp3')
 pygame.mixer.music.play(-1)
-arrow_whoosh = pygame.mixer.Sound('arrow_whoosh.mp3')
-arrow_collision=pygame.mixer.Sound("arrow_collision.mp3")
-win_sound=pygame.mixer.Sound("win.wav")
-
-#player_image
-player_sprite_right= pygame.image.load("Viking_Player_sprite.jpeg").convert()
+arrow_whoosh = pygame.mixer.Sound('audio/arrow_whoosh.mp3')
+arrow_collision=pygame.mixer.Sound("audio/arrow_collision.mp3")
+win_sound=pygame.mixer.Sound("audio/win.wav")
 
 # Game state
 class GameState:
@@ -47,11 +44,10 @@ class Player(pygame.sprite.Sprite):
         self.image.fill((0, 0, 0, 0))  # Transparent background
 
         # Draw green square with white outline
-        rect1 = pygame.draw.rect(self.image, GREEN, (4, 4, 32, 32))
+        pygame.draw.rect(self.image, GREEN, (4, 4, 32, 32))
+        pygame.draw.rect(self.image, WHITE, (4, 4, 32, 32), 2)
 
         self.rect = self.image.get_rect(topleft=(x, y))
-        player_sprite_resize = pygame.transform.scale(player_sprite, (40,40))
-        self.image.blit(player_sprite_front, (rect1.x, rect1.y))
         self.speed = 5
 
     def handle_keys(self):
@@ -83,9 +79,9 @@ class StartRoom:
 # Puzzle Room
 class PuzzleRoom:
     def __init__(self):
-        self.border = pygame.image.load("puzzleborder.png")
+        self.border = pygame.image.load("images/puzzleborder.png")
         self.border_thickness=10
-        originalBg = pygame.image.load("puzzlebg.jpg")
+        originalBg = pygame.image.load("images/puzzlebg.jpg")
         self.bg = pygame.transform.scale(originalBg, (WIDTH-2*self.border_thickness, HEIGHT-2*self.border_thickness))
         self.player = Player(100, 100)
         self.blocks = [
@@ -141,8 +137,8 @@ class PuzzleRoom:
 # Arrow Room
 class ArrowRoom:
     def __init__(self):
-        self.border=pygame.image.load("arrowborder.png")
-        originalBg = pygame.image.load("arrowbg.jpg")
+        self.border=pygame.image.load("images/arrowborder.png")
+        originalBg = pygame.image.load("images/arrowbg.jpg")
         self.border_thickness=10
         self.bg = pygame.transform.scale(originalBg, (WIDTH-2*self.border_thickness, HEIGHT-2*self.border_thickness))
         self.player = Player(400, 500)
