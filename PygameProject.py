@@ -73,8 +73,8 @@ class StartRoom:
 
     def draw(self, screen):
         screen.fill(BLACK)
-        text = self.font.render("Press SPACE to start the puzzle", True, WHITE)
-        screen.blit(text, (150, 250))
+        text = self.font.render("Press SPACE to try again", True, WHITE)
+        screen.blit(text, (190, 250))
 
 # Puzzle Room
 class PuzzleRoom:
@@ -242,10 +242,11 @@ def main():
                 if 300 < x < 500:
                     if 150 < y < 200:
                         game_state.state = "playing"
-                        game_state.current_room = "start"
+                        game_state.current_room = "puzzle"
                     elif 220 < y < 270:
                         game_state.state = "playing"
-                        game_state.current_room = "start"
+                        game_state.current_room = "puzzle"
+                        rooms["puzzle"] = PuzzleRoom()
                     elif 290 < y < 340:
                         pygame.quit()
                         sys.exit()
