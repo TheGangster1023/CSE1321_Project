@@ -23,14 +23,14 @@ DARK = (30, 30, 30)
 
 # Music/Sounds
 pygame.mixer.init()
-pygame.mixer.music.load('Intro.mp3')
+pygame.mixer.music.load('audio/Intro.mp3')
 pygame.mixer.music.play(-1)
-arrow_whoosh = pygame.mixer.Sound('arrow_whoosh.mp3')
-arrow_collision=pygame.mixer.Sound("arrow_collision.mp3")
-win_sound=pygame.mixer.Sound("win.wav")
+arrow_whoosh = pygame.mixer.Sound('audio/arrow_whoosh.mp3')
+arrow_collision=pygame.mixer.Sound("audio/arrow_collision.mp3")
+win_sound=pygame.mixer.Sound("audio/win.wav")
 
 #player_image
-player_sprite= pygame.image.load("Viking_Player_sprite.jpeg").convert()
+player_sprite = pygame.image.load("images/Viking_Player_sprite.jpeg").convert()
 
 # Game state
 class GameState:
@@ -83,9 +83,9 @@ class StartRoom:
 # Puzzle Room
 class PuzzleRoom:
     def __init__(self):
-        self.border = pygame.image.load("puzzleborder.png")
+        self.border = pygame.image.load("images/puzzleborder.png")
         self.border_thickness=10
-        originalBg = pygame.image.load("puzzlebg.jpg")
+        originalBg = pygame.image.load("images/puzzlebg.jpg")
         self.bg = pygame.transform.scale(originalBg, (WIDTH-2*self.border_thickness, HEIGHT-2*self.border_thickness))
         self.player = Player(100, 100)
         self.blocks = [
@@ -141,8 +141,8 @@ class PuzzleRoom:
 # Arrow Room
 class ArrowRoom:
     def __init__(self):
-        self.border=pygame.image.load("arrowborder.png")
-        originalBg = pygame.image.load("arrowbg.jpg")
+        self.border=pygame.image.load("images/arrowborder.png")
+        originalBg = pygame.image.load("images/arrowbg.jpg")
         self.border_thickness=10
         self.bg = pygame.transform.scale(originalBg, (WIDTH-2*self.border_thickness, HEIGHT-2*self.border_thickness))
         self.player = Player(400, 500)
