@@ -121,6 +121,13 @@ class PuzzleRoom:
             pygame.draw.rect(screen, BLUE, block)
         for plate in self.plates:
             pygame.draw.rect(screen, YELLOW, plate)
+        border_thickness = 10
+        border_color = (255, 0, 0)  # Red
+
+        pygame.draw.rect(screen, border_color, (0, 0, WIDTH, border_thickness))  # Top
+        pygame.draw.rect(screen, border_color, (0, 0, border_thickness, HEIGHT))  # Left
+        pygame.draw.rect(screen, border_color, (0, HEIGHT - border_thickness, WIDTH, border_thickness))  # Bottom
+        pygame.draw.rect(screen, border_color, (WIDTH - border_thickness, 0, border_thickness, HEIGHT))  # Right
 
 # Arrow Room
 class ArrowRoom:
@@ -155,6 +162,13 @@ class ArrowRoom:
 
     def draw(self, screen):
         screen.blit(self.bg, (0, 0))
+        border_thickness = 10
+        border_color = (255, 0, 0)  # Red
+
+        pygame.draw.rect(screen, border_color, (0, 0, WIDTH, border_thickness))  # Top
+        pygame.draw.rect(screen, border_color, (0, 0, border_thickness, HEIGHT))  # Left
+        pygame.draw.rect(screen, border_color, (0, HEIGHT - border_thickness, WIDTH, border_thickness))  # Bottom
+        pygame.draw.rect(screen, border_color, (WIDTH - border_thickness, 0, border_thickness, HEIGHT))  # Right
 
         # Optional dimming overlay (comment out if not needed)
         # dim_overlay = pygame.Surface((WIDTH, HEIGHT))
