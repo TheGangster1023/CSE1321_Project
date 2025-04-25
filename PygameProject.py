@@ -122,7 +122,8 @@ class PuzzleRoom:
             game_state.start_time = time.time()
 
     def draw(self, screen):
-        screen.blit(self.bg, (0, 0))
+        screen.blit(self.border, (0, 0))
+        screen.blit(self.bg, (self.border_thickness, self.border_thickness))
         screen.blit(self.player.image, self.player.rect)
         for block in self.blocks:
             pygame.draw.rect(screen, BLUE, block)
@@ -130,13 +131,6 @@ class PuzzleRoom:
             pygame.draw.rect(screen, YELLOW, plate)
         if not (0<self.player.rect.x<(WIDTH-32) and (0<self.player.rect.y<(HEIGHT-32))):
             self.player.rect.topleft=(100,100)
-        border_thickness = 10
-        border_color = (255, 0, 0)  # Red
-
-        pygame.draw.rect(screen, border_color, (0, 0, WIDTH, border_thickness))  # Top
-        pygame.draw.rect(screen, border_color, (0, 0, border_thickness, HEIGHT))  # Left
-        pygame.draw.rect(screen, border_color, (0, HEIGHT - border_thickness, WIDTH, border_thickness))  # Bottom
-        pygame.draw.rect(screen, border_color, (WIDTH - border_thickness, 0, border_thickness, HEIGHT))  # Right
 
 # Arrow Room
 class ArrowRoom:
@@ -174,14 +168,8 @@ class ArrowRoom:
             self.player.rect.topleft=(400,500)
 
     def draw(self, screen):
-        screen.blit(self.bg, (0, 0))
-        border_thickness = 10
-        border_color = (255, 0, 0)  # Red
-
-        pygame.draw.rect(screen, border_color, (0, 0, WIDTH, border_thickness))  # Top
-        pygame.draw.rect(screen, border_color, (0, 0, border_thickness, HEIGHT))  # Left
-        pygame.draw.rect(screen, border_color, (0, HEIGHT - border_thickness, WIDTH, border_thickness))  # Bottom
-        pygame.draw.rect(screen, border_color, (WIDTH - border_thickness, 0, border_thickness, HEIGHT))  # Right
+        screen.blit(self.border, (0, 0))
+        screen.blit(self.bg, (self.border_thickness, self.border_thickness))
 
         # Optional dimming overlay (comment out if not needed)
         # dim_overlay = pygame.Surface((WIDTH, HEIGHT))
