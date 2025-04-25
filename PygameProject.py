@@ -107,6 +107,14 @@ class PuzzleRoom:
                     block.x += 40 if dx < 0 else -40
                 else:
                     block.y += 40 if dy < 0 else -40
+            if block.x<0:
+                block.x=0
+            if block.x>WIDTH-40:
+                block.x=WIDTH-40
+            if block.y<0:
+                block.y=0
+            if block.y>(HEIGHT-40):
+                block.y=HEIGHT-40
 
         matched = 0
         for plate in self.plates:
