@@ -30,7 +30,7 @@ arrow_collision=pygame.mixer.Sound("arrow_collision.mp3")
 win_sound=pygame.mixer.Sound("win.wav")
 
 #player_image
-player_sprite_right= pygame.image.load("Viking_Player_sprite.jpeg").convert()
+player_sprite= pygame.image.load("Viking_Player_sprite.jpeg").convert()
 
 # Game state
 class GameState:
@@ -51,7 +51,7 @@ class Player(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect(topleft=(x, y))
         player_sprite_resize = pygame.transform.scale(player_sprite, (40,40))
-        self.image.blit(player_sprite_front, (rect1.x, rect1.y))
+        self.image.blit(player_sprite, (rect1.x, rect1.y))
         self.speed = 5
 
     def handle_keys(self):
