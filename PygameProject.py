@@ -32,8 +32,9 @@ win_sound=pygame.mixer.Sound("win.wav")
 # Game state
 class GameState:
     def __init__(self):
-        self.current_room = "start"
+        self.state = "menu"
         self.start_time = None
+        self.current_room = "start"
 
 # Player
 class Player(pygame.sprite.Sprite):
@@ -202,7 +203,21 @@ class ExitRoom:
     def draw(self, screen):
         screen.fill((0, 100, 0))
         text = self.font.render("You Win! Press ESC to Quit", True, WHITE)
-        screen.blit(text, (180, 250))
+        screen.blit(text, (150, 275))
+
+# Function to render text
+def drawText(text, x, y):
+    font = pygame.font.SysFont(None, 50)
+    render = font.render(text, True, BLACK)
+    screen.blit(render, (x, y))
+
+# Menu function
+def drawMenu():
+    screen.fill((180, 180, 180))
+    drawText("Start Game", 300, 150)
+    drawText("Reset Game", 300, 220)
+    drawText("Exit", 300, 290)
+
 
 # Main Game Loop
 def main():
@@ -214,16 +229,37 @@ def main():
         "exit": ExitRoom()
     }
 
+    font = pygame.font.SysFont(None, 50)
+
     while True:
         screen.fill(BLACK)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if game_state.state == "menu" and event.type == pygame.MOUSEBUTTONDOWN:
+                x, y =event.pos
+                if 300 < x < 500:
+                    if 150 < y < 200:
+                        game_state.state = "playing"
+                        game_state.current_room = "start"
+                    elif 220 < y < 270:
+                        game_state.state = "playing"
+                        game_state.current_room = "start"
+                    elif 290 < y < 340:
+                        pygame.quit()
+                        sys.exit()
 
-        current_room = rooms[game_state.current_room]
-        current_room.update(game_state)
-        current_room.draw(screen)
+        if game_state.state == "menu":
+            drawMenu()
+        elif game_state.state == "playing":
+            current_room = rooms[game_state.current_room]
+            current_room.update(game_state)
+            current_room.draw(screen)
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_ESCAPE]:
+            game_state.state = "menu"
 
         pygame.display.flip()
         clock.tick(60)
