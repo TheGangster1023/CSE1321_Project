@@ -29,8 +29,10 @@ arrow_whoosh = pygame.mixer.Sound('audio/arrow_whoosh.mp3')
 arrow_collision=pygame.mixer.Sound("audio/arrow_collision.mp3")
 win_sound=pygame.mixer.Sound("audio/win.wav")
 
-#player_image
+#images
 player_sprite = pygame.image.load("images/Viking_Player_sprite.png").convert_alpha()
+push_box = pygame.image.load("images/push_box.png").convert_alpha()
+push_box_sized= pygame.transform.scale(push_box,(40,40))
 
 # Game state
 class GameState:
@@ -130,10 +132,10 @@ class PuzzleRoom:
         screen.blit(self.border, (0, 0))
         screen.blit(self.bg, (self.border_thickness, self.border_thickness))
         screen.blit(self.player.image, self.player.rect)
-        for block in self.blocks:
-            pygame.draw.rect(screen, BLUE, block)
         for plate in self.plates:
-            pygame.draw.rect(screen, YELLOW, plate)
+            pygame.draw.rect(screen, DARK, plate)
+        for block in self.blocks:
+            screen.blit(push_box_sized, block)
         if not (0<self.player.rect.x<(WIDTH-32) and (0<self.player.rect.y<(HEIGHT-32))):
             self.player.rect.topleft=(100,100)
 
