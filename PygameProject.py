@@ -23,15 +23,15 @@ DARK = (30, 30, 30)
 
 # Music/Sounds
 pygame.mixer.init()
-pygame.mixer.music.load('audio/Intro.mp3')
+pygame.mixer.music.load('audio/Intro.mp3') # Audio Credit: Ghost King's Revenge by Good Kid | Link - https://goodkid.bandcamp.com/album/ghost-kings-revenge-ost
 pygame.mixer.music.play(-1)
-arrow_whoosh = pygame.mixer.Sound('audio/arrow_whoosh.mp3')
-arrow_collision=pygame.mixer.Sound("audio/arrow_collision.mp3")
-win_sound=pygame.mixer.Sound("audio/win.wav")
+arrow_whoosh = pygame.mixer.Sound('audio/arrow_whoosh.mp3') # Audio Source: Link - https://www.epidemicsound.com/sound-effects/tracks/74aa6c2d-9f66-49e1-b5cb-f9bd95fcaad3/
+arrow_collision=pygame.mixer.Sound("audio/arrow_collision.mp3") # Audio Source: Link - https://www.epidemicsound.com/sound-effects/tracks/b0f11b27-abae-4de2-b5ac-f13b9c4f45e0/
+win_sound=pygame.mixer.Sound("audio/win.wav") # Audio Source: Link - https://www.epidemicsound.com/sound-effects/tracks/451b246a-c10a-4c3b-99de-5adc399efea4/
 
 #images
-player_sprite = pygame.image.load("images/Viking_Player_sprite.png").convert_alpha()
-push_box = pygame.image.load("images/push_box.png").convert_alpha()
+player_sprite = pygame.image.load("images/Viking_Player_sprite.png").convert_alpha() # Image Source: Artist - klyaksun | Link - https://www.bigstockphoto.com/image-457712987/stock-vector-viking-cartoon-character-sprite-sheet-animation-for-2d-rpg-game-scandinavian-warrior-personage-figh
+push_box = pygame.image.load("images/push_box.png").convert_alpha() # Image Source: Artist - Kaleb da Silva Pereira | Link - https://www.vecteezy.com/vector-art/9877773-pixel-art-wooden-box-vector-icon-for-8bit-game-on-white-background
 push_box_sized= pygame.transform.scale(push_box,(40,40))
 
 # Game state
@@ -82,9 +82,9 @@ class StartRoom:
 # Puzzle Room
 class PuzzleRoom:
     def __init__(self):
-        self.border = pygame.image.load("images/puzzleborder.png")
+        self.border = pygame.image.load("images/puzzleborder.png") # Image Source: Link - https://www.craiyon.com/image/jX_EGhdrTXCHwBjO4ZBs7Q
         self.border_thickness=10
-        originalBg = pygame.image.load("images/puzzlebg.jpg")
+        originalBg = pygame.image.load("images/puzzlebg.jpg") # Image Source: Artist - user2122532 | Link - https://www.freepik.com/premium-vector/pixel-brick-wall-seamless-pattern-vector-art-8-bit-design-stickers-logo-mobile-app_22754932.htm
         self.bg = pygame.transform.scale(originalBg, (WIDTH-2*self.border_thickness, HEIGHT-2*self.border_thickness))
         self.player = Player(100, 100)
         self.blocks = [
@@ -142,8 +142,8 @@ class PuzzleRoom:
 # Arrow Room
 class ArrowRoom:
     def __init__(self):
-        self.border=pygame.image.load("images/arrowborder.png")
-        originalBg = pygame.image.load("images/arrowbg.jpg")
+        self.border=pygame.image.load("images/arrowborder.png") # Image Source: AI Generated
+        originalBg = pygame.image.load("images/arrowbg.jpg") # Image Source: Artist - pikisuperstar | Link - https://www.freepik.es/vector-gratis/fondo-paisaje-futurista-estilo-retro_5172179.htm
         self.border_thickness=10
         self.bg = pygame.transform.scale(originalBg, (WIDTH-2*self.border_thickness, HEIGHT-2*self.border_thickness))
         self.player = Player(400, 500)
